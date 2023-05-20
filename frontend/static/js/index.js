@@ -4,6 +4,7 @@
 //7 import view
 import Dashboard from "./views/Dashboard.js"
 import Posts from "./views/Posts.js"
+import Posts1 from "./views/Posts1.js"
 import Settings from "./views/Settings.js"
 import PostView from "./views/PostView.js"
 
@@ -33,9 +34,10 @@ const router = async () => {
         {path: "/", view: Dashboard},
         // {path: "/posts", view: () => console.log('Articles')},
         {path: "/posts", view: Posts},
+        {path: "/posts1/:recipe", view: Posts1},
         // {path: "/settings", view: () => console.log('Configuration')}
         {path: "/settings", view: Settings},
-        {path: "/post-view/:id", view: PostView}
+        {path: "/post-view/:id/:food", view: PostView} 
     ]
 
     //2 match function
@@ -90,4 +92,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     })
     router()
+
 })

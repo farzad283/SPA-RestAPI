@@ -35,3 +35,15 @@ body {
 a {
     color: #009579;
 }  
+
+.image{
+    width: 50%;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.position{
+    text-align: center;
+}

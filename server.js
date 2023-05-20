@@ -20,7 +20,7 @@ function updateJSONFile(ticker) {
     } else if (res.statusCode !== 200) {
       console.log('Status', res.statusCode);
     } else {
-      console.log(data);
+      //console.log(data);
       const newData = JSON.stringify(data);
       fs.writeFile('frontend/static/js/views/' + ticker + '.json', newData, err => {
         if (err) throw err;
@@ -54,6 +54,26 @@ fs.readdir(path.resolve(__dirname, 'frontend', 'static', 'js', 'views'), (err, f
       const ticker = file.slice(0, -5); // Remove the file extension
       updateJSONFile(ticker);
     }
+  });
+});
+
+
+
+app.get('/jsonfiles', (req, res) => {
+  fs.readdir(path.join(__dirname, 'frontend', 'static', 'js', 'views'), (err, files) => {
+    if (err) {
+      console.error('Failed to read directory: ', err);
+      res.status(500).send('Server error');
+      return;
+    }
+    
+    // Filter the files to only return .json files and remove the extension
+    const jsonFiles = files.filter(file => file.endsWith('.json')).map(file => path.parse(file).name);
+
+    // Log the result to the console
+    console.log(jsonFiles);
+
+    res.json(jsonFiles);
   });
 });
 
