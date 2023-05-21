@@ -22,7 +22,7 @@ function updateJSONFile(ticker) {
     } else {
       //console.log(data);
       const newData = JSON.stringify(data);
-      fs.writeFile('frontend/static/js/views/' + ticker + '.json', newData, err => {
+      fs.writeFile('frontend/static/js/views/JSON-data/' + ticker + '.json', newData, err => {
         if (err) throw err;
         console.log('Success');
       });
@@ -42,7 +42,7 @@ app.get('/ticker=:id', function (req, res) {
 });
 
 // Get the existing JSON files in the directory
-fs.readdir(path.resolve(__dirname, 'frontend', 'static', 'js', 'views'), (err, files) => {
+fs.readdir(path.resolve(__dirname, 'frontend', 'static', 'js', 'views', 'JSON-data'), (err, files) => {
   if (err) {
     console.error('Error reading directory:', err);
     return;
@@ -60,7 +60,7 @@ fs.readdir(path.resolve(__dirname, 'frontend', 'static', 'js', 'views'), (err, f
 
 
 app.get('/jsonfiles', (req, res) => {
-  fs.readdir(path.join(__dirname, 'frontend', 'static', 'js', 'views'), (err, files) => {
+  fs.readdir(path.join(__dirname, 'frontend', 'static', 'js', 'views', 'JSON-data'), (err, files) => {
     if (err) {
       console.error('Failed to read directory: ', err);
       res.status(500).send('Server error');

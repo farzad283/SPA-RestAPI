@@ -11,7 +11,7 @@ body {
     left: 0;
     width: var(--nav-width);
     height: 100vh;
-    background: #070539;
+    background: #1b3277;
 }
 
 .nav__link {
@@ -24,6 +24,10 @@ body {
 
 .nav__link:hover {
     background: rgba(255, 255, 255, 0.05);
+}
+
+.nav__box{
+    margin-top: 50px;
 }
 
 #app {
@@ -44,6 +48,55 @@ a {
     margin-top: 50px;
 }
 
-.position{
+.gallery_image{
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.gallery_info img{
+   position: relative;
+   top: -60px;
+}
+
+.gallery{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
     text-align: center;
+}
+
+.position,.position_Dash{
+    text-align: center;
+}
+
+.position_Dash h1 {
+    background-color: #1b3277;
+
+    padding: 30px;
+}
+
+.position_Dash a{
+    color: white;
+    text-decoration: none;
+}
+
+.position_img{
+    width: 100%;
+    height: 100%;
+}
+
+.nav__information{
+    text-align: center;
+    position: absolute;
+    top: 90%;
+    border: 3px solid rgb(97, 11, 11);
+    background-color: #eeeeee;
+}
+
+.nav__information a{
+    color: rgb(108, 16, 16);
+    text-decoration: none;
 }

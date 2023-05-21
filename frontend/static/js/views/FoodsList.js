@@ -3,10 +3,10 @@ import AbstractView from "./AbstractView.js";
 export default class extends AbstractView {
   constructor(params) {
     super(params);
-    this.setTitle('Posts');
-    this.recipe = params.recipe; // Store the recipe parameter
-    console.log("Params: ", params); // Add this line
-    console.log("Recipe: ", this.recipe); // And this line
+    this.setTitle('Foods-list');
+    this.recipe = params.recipe; 
+    console.log("Params: ", params); 
+    console.log("Recipe: ", this.recipe); 
   }
 
 
@@ -16,7 +16,7 @@ export default class extends AbstractView {
       return response.json();
     }
 
-    const data = await getData(`/static/js/views/${this.recipe}.json`); // Use this.recipe
+    const data = await getData(`/static/js/views/JSON-data/${this.recipe}.json`); 
     
     //console.log(data);
     //console.log(this.recipe);
@@ -26,13 +26,13 @@ export default class extends AbstractView {
     let listPosts = "<ul>";
     data.results.forEach(recipe => {
       //console.log(recipe.id);
-      listPosts += `<li><a href='/post-view/${recipe.id}/${food}' data-link>${recipe.title}</a></li>`;
+      listPosts += `<li><a href='/food-view/${recipe.id}/${food}' data-link>${recipe.title}</a></li>`;
     });
     listPosts += "</ul>";
 
-    return `<h1>Posts</h1>` + listPosts+
+    return `<h1>Liste d'aliments</h1>` + listPosts+
     "<br>" +
-    "<a href='/posts' data-link>Retourner</a>";
+    "<a href='/foods' data-link>Retourner</a>";
     
   }
 }

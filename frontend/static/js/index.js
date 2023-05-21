@@ -1,12 +1,10 @@
-// console.log('test');
-
 
 //7 import view
 import Dashboard from "./views/Dashboard.js"
-import Posts from "./views/Posts.js"
-import Posts1 from "./views/Posts1.js"
-import Settings from "./views/Settings.js"
-import PostView from "./views/PostView.js"
+import Foods from "./views/Foods.js"
+import FoodsList from "./views/FoodsList.js"
+import Gallery from "./views/Gallery.js"
+import FoodView from "./views/FoodView.js"
 
 //10 Regex
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$")
@@ -16,9 +14,6 @@ const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(
 const getParams = match => {
     const values = match.result.slice(1)
     const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(result => result[1])
-    // console.log(Array.from(match.route.path.matchAll(/:(\w+)/g)))
-    // return {}
-
     return Object.fromEntries(keys.map((key, i) => {
         return [key, values[i]]
 
@@ -28,16 +23,12 @@ const getParams = match => {
 //1 router
 const router = async () => {
     //10.1 test regex
-    //console.log(pathToRegex("/post-view/:id"))
     const routes = [
-        // {path: "/", view: () => console.log('Tableau')},
         {path: "/", view: Dashboard},
-        // {path: "/posts", view: () => console.log('Articles')},
-        {path: "/posts", view: Posts},
-        {path: "/posts1/:recipe", view: Posts1},
-        // {path: "/settings", view: () => console.log('Configuration')}
-        {path: "/settings", view: Settings},
-        {path: "/post-view/:id/:food", view: PostView} 
+        {path: "/foods", view: Foods},
+        {path: "/foodsList/:recipe", view: FoodsList},
+        {path: "/gallery", view: Gallery},
+        {path: "/food-view/:id/:food", view: FoodView} 
     ]
 
     //2 match function
@@ -47,7 +38,6 @@ const router = async () => {
             result: location.pathname.match(pathToRegex(route.path))
         }
     })
-    //console.log(potentialMatches)
 
    //3 find view
    let match = potentialMatches.find(potentialMatch => potentialMatch.result !== null)
@@ -58,16 +48,10 @@ const router = async () => {
            result: [location.pathname]
        }
    }
-   //console.log(match.result)
-
-  // console.log(match.route.view())
-
-
+   
 
   //8 Render view
   const view = new match.route.view(getParams(match));
-
-  //console.log(getParams(match));
 
   document.querySelector("#app").innerHTML = await view.getHtml()
 

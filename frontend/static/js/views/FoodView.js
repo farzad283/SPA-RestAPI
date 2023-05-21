@@ -4,7 +4,7 @@ export default class extends AbstractView{
 
     constructor(params){
         super(params)
-        this.setTitle('Visualiser Article')
+        this.setTitle('Visualiser Foods')
         this.food = params.food; 
         console.log("Food: ", this.food);
     }
@@ -18,10 +18,8 @@ export default class extends AbstractView{
             return response.json()
         }
         
-      
 
-
-        const data = await getData(`/static/js/views/${this.food}.json`); // Use this.recipe
+        const data = await getData(`/static/js/views/JSON-data/${this.food}.json`); // Use this.recipe
         // console.log(data.results);
         const article = data.results.find(item => item.id === nu)
 
@@ -29,6 +27,6 @@ export default class extends AbstractView{
         return "<div class='position'>" +"<h1>" + article.title + "</h1>" +
         "<img class='image' src='" + article.image + "' alt='" + article.title + "'>" +
         "<br>" +
-        "<a href='/posts' data-link>Retourner</a>"+"</div>"
+        "<a href='/foods' data-link>Retourner</a>"+"</div>"
     }
 }
